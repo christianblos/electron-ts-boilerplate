@@ -1,0 +1,76 @@
+{
+  "name": "electron-ts-boilerplate",
+  "description": "A boilerplate for an electron app with typescript and react",
+  "license": "MIT",
+  "author": {
+    "name": "Christian Blos"
+  },
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "electron": "electron dist/compiled/main.js",
+    "dev": "webpack --config-name main --mode=development --env.env=dev --env.devServerPort=3000 && concurrently \"webpack-dev-server --config-name renderer --mode=development --env.env=dev --env.devServerPort=3000\" \"wait-on http://localhost:3000 && yarn run electron\"",
+    "compile": "webpack --mode=production",
+    "create-icons": "electron-icon-maker --input=./build/icons/icon-src.png --output=./build/",
+    "dist": "rimraf dist && yarn run compile && electron-builder -mw"
+  },
+  "main": "dist/compiled/main.js",
+  "build": {
+    "productName": "Electron Typescript Boilerplate",
+    "appId": "christianblos.electron-ts-boilerplate",
+    "files": [
+      "dist/compiled"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icons/mac/icon.icns",
+      "target": "dmg"
+    },
+    "dmg": {
+      "icon": "build/icons/mac/icon.icns",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icons/win/icon.ico"
+    }
+  },
+  "dependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "16.0.4",
+    "concurrently": "3.5.1",
+    "css-loader": "0.28.10",
+    "electron": "1.8.3",
+    "electron-builder": "20.4.1",
+    "electron-icon-maker": "0.0.4",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "file-loader": "1.1.11",
+    "html-webpack-plugin": "3.0.6",
+    "node-sass": "4.8.0",
+    "rimraf": "2.6.2",
+    "sass-loader": "6.0.7",
+    "style-loader": "0.20.3",
+    "ts-loader": "4.0.1",
+    "typescript": "2.7.2",
+    "wait-on": "2.1.0",
+    "webpack": "4.1.1",
+    "webpack-cli": "2.0.10",
+    "webpack-dev-server": "3.1.1"
+  }
+}
