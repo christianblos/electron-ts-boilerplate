@@ -127,7 +127,10 @@ function rendererConfig(isDev, devServerPort) {
             port: devServerPort,
             historyApiFallback: true,
             hot: true,
-            overlay: true
+            overlay: true,
+            stats: {
+                children: false
+            }
         };
 
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
