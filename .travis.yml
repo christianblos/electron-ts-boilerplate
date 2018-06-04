@@ -13,6 +13,6 @@ script:
 
 deploy:
   provider: script
-  script: echo "TODO: deployment"
+  script: ./build/travis/zip-files.sh
   on:
     condition: $(./build/travis/should-deploy.sh)
