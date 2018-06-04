@@ -8,4 +8,11 @@ cache: yarn
 install: yarn
 
 script:
+  - yarn run compile
   - yarn test
+
+deploy:
+  provider: script
+  script: echo "TODO: deployment"
+  on:
+    condition: $(./build/travis/should-deploy.sh)
