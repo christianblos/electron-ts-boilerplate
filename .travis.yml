@@ -18,9 +18,7 @@ deploy:
   before_deploy:
     - yarn run dist
     - ./build/travis/zip-files.sh
-    - git config --local user.name "Travis CI"
-    - git config --local user.email "builds@travis-ci.com"
-    - git tag "v$(./build/travis/get-package-json-val.sh version)"
+    - export TRAVIS_TAG="v$(./build/travis/get-package-json-val.sh version)"
   file_glob: true
   file: dist/upload/*
   skip_cleanup: true
